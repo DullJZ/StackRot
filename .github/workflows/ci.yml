@@ -22,10 +22,5 @@ jobs:
       run: make
     - name: Install QEMU
       run: sudo apt-get install -y qemu-system-x86-64
-    - name: Run the exploit
-      id: test
-      continue-on-error: true
-      run: make run KVM=
-    - name: Retry to run the exploit
-      if: steps.test.outcome == 'failure'
-      run: make run KVM=
+    - name: Setup Debug Session
+      uses: csexton/debugger-action@master
